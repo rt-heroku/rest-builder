@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+  <classpathentry kind="src" path="src/test/java" output="target/test-classes" including="**/*.java"/>
+  <classpathentry kind="src" path="src/main/java" including="**/*.java"/>
+  <classpathentry kind="src" path="src/main/resources" excluding="**/*.java"/>
+  <classpathentry kind="output" path="target/classes"/>
+  <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+  <classpathentry kind="var" path="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/telosys/telosys-tools-commons/3.0.0-SNAPSHOT/telosys-tools-commons-3.0.0-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/googlecode/json-simple/json-simple/1.1.1/json-simple-1.1.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/telosys/telosys-tools-database/3.0.0-SNAPSHOT/telosys-tools-database-3.0.0-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/telosys/telosys-tools-repository/3.0.0-SNAPSHOT/telosys-tools-repository-3.0.0-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/telosys/telosys-tools-generic-model/3.0.0-SNAPSHOT/telosys-tools-generic-model-3.0.0-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/telosys/telosys-tools-generator/3.0.0-SNAPSHOT/telosys-tools-generator-3.0.0-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/telosys/telosys-tools-generator-engine/3.0.0-SNAPSHOT/telosys-tools-generator-engine-3.0.0-SNAPSHOT.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/apache/velocity/velocity/1.7/velocity-1.7.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-lang/commons-lang/2.4/commons-lang-2.4.jar"/>
+  <classpathentry kind="var" path="M2_REPO/oro/oro/2.0.8/oro-2.0.8.jar"/>
+  <classpathentry kind="var" path="M2_REPO/logkit/logkit/2.0/logkit-2.0.jar"/>
+  <classpathentry kind="var" path="M2_REPO/org/postgresql/postgresql/9.4.1212.jre7/postgresql-9.4.1212.jre7.jar"/>
+  <classpathentry kind="var" path="M2_REPO/commons-cli/commons-cli/1.3/commons-cli-1.3.jar"/>
+</classpath>
