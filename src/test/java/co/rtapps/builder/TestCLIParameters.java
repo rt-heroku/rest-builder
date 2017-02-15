@@ -5,16 +5,16 @@ public class TestCLIParameters {
 
 		TestCLIParameters test = new TestCLIParameters();
 		
-		test.testHelp();
+//		test.testHelp();
 		
 		test.testMandatory();
 		
-		test.testAll();
+//		test.testAll();
 	}
 	
 	
 	void testMandatory(){
-		String[] args = new String[]{ "--app=myApp " };
+		String[] args = new String[]{ "--app=appName --package-name=com.heroku --database-url=url" };
 		
 		System.out.println("testMandatory -> All args: " + args);
 		

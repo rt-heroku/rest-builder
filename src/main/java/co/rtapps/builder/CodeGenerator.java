@@ -94,7 +94,7 @@ public class CodeGenerator {
 
 		rootPackage = getOptionOrDefaultValue(line, PACKAGE_NAME, "com.heroku.generated");
 		repoName = getOptionOrDefaultValue(line, TEMPLATE_NAME, "template_secure_api_db");
-		entityPackage = getOptionOrDefaultValue(line, ENTITY_PACKAGE_NAME, PACKAGE_NAME + "." + "entities");
+		entityPackage = getOptionOrDefaultValue(line, ENTITY_PACKAGE_NAME, rootPackage + "." + "entities");
 		appName = getOptionOrDefaultValue(line, APP, "secure-app");
 		dir = getOptionOrDefaultValue(line, DIR, System.getProperty("user.dir"));
 		debug = getOptionOrDefaultValue(line, DEBUG, "false").equals("true");
