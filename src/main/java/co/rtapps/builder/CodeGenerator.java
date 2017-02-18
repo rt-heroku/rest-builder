@@ -58,6 +58,13 @@ public class CodeGenerator {
 	private static final String PACKAGE_NAME = "package-name";
 	private static final String REPOSITORY_FILENAME = "/postgres.dbrep";
 	private static final String DEFAULT_GITHUB_USER = "rt-heroku";
+	private static final String DEFAULT_SCHEMA = "salesforce";
+	private static final String SCHEMA = "schema";
+	private static final String EXCLUDE_PATTERN = "exclude-pattern";
+	private static final String INCLUDE_PATTERN = "include-pattern";
+	private static final String TABLENAME_PATTERN = "tablename-pattern";
+	private static final String TABLE_TYPE = "table-type";
+	
 	private static TelosysToolsLogger logger;
 	private static boolean debug = false;
 
@@ -67,7 +74,12 @@ public class CodeGenerator {
 	private static String entityPackage = "com.heroku.entities";
 	private static String dir = "";
 	private static String databaseUrl = "postgres://qfanqbpxwvtaot:438b7d87af678826f7fb959df71a11ecb1a605131df2e3b7531fd2454f0fbaa7@ec2-107-20-149-243.compute-1.amazonaws.com:5432/ddci0c3jj4j96m";
-
+	private static String schemaName = "salesforce";
+	private static String excludePattern = "^[_]\\w*";
+	private static String includePattern = "";
+	private static String tableNamePattern = "%";
+	private static String tableType = "TABLE";
+	
 	public static void main(String[] args) {
 		System.out.println("Starting Code Generator!!!");
 
@@ -92,12 +104,20 @@ public class CodeGenerator {
 		validateMandatoryOptionIsPresent(line, options, DATABASE_URL);
 		validateMandatoryOptionIsPresent(line, options, APP);
 
+		databaseUrl = getOptionOrDefaultValue(line, DATABASE_URL, "");
+		appName = getOptionOrDefaultValue(line, APP, appName);
+
 		rootPackage = getOptionOrDefaultValue(line, PACKAGE_NAME, "com.heroku.generated");
 		repoName = getOptionOrDefaultValue(line, TEMPLATE_NAME, "template_secure_api_db");
 		entityPackage = getOptionOrDefaultValue(line, ENTITY_PACKAGE_NAME, rootPackage + "." + "entities");
 		appName = getOptionOrDefaultValue(line, APP, "secure-app");
 		dir = getOptionOrDefaultValue(line, DIR, System.getProperty("user.dir"));
 		debug = getOptionOrDefaultValue(line, DEBUG, "false").equals("true");
+		schemaName = getOptionOrDefaultValue(line, DEFAULT_SCHEMA, schemaName);
+		excludePattern = getOptionOrDefaultValue(line, EXCLUDE_PATTERN, excludePattern);
+		includePattern = getOptionOrDefaultValue(line, INCLUDE_PATTERN, includePattern);
+		tableNamePattern = getOptionOrDefaultValue(line, TABLENAME_PATTERN, tableNamePattern);
+		tableType = getOptionOrDefaultValue(line, TABLE_TYPE, tableType);
 		
 		return true;
 	}
@@ -147,6 +167,11 @@ public class CodeGenerator {
 		options.addOption("h", HELP, false, "display this help");
 		options.addOption("W", DIR, true, "directory to write all files [default .]");
 		options.addOption("d", DEBUG, true, "turn debug on");
+		options.addOption("s", SCHEMA, true, "Schema where the salesforce tables are");
+		options.addOption("x", EXCLUDE_PATTERN, true, "Regex Pattern used to EXCLUDE table while searching for names ... i.e everything that starts with UNDERSCORE _hc_err");
+		options.addOption("i", INCLUDE_PATTERN, true, "Regex Pattern used to INCLUDE table while searching for names ... i.e everything that starts with UNDERSCORE _hc_err");
+		options.addOption("t", TABLENAME_PATTERN, true, "Pattern used to search table names ... i.e %, acc%");
+		options.addOption("T", TABLE_TYPE, true, "Type of object [TABLE,VIEW, MATERIALIZED VIEW] - Only one!");
 
 		return options;
 	}
@@ -314,10 +339,11 @@ public class CodeGenerator {
 		dbcfg.setUser(dbUrl.getUsername());
 		dbcfg.setPassword(dbUrl.getPassword());
 		dbcfg.setMetadataTableTypes("TABLE");
-		dbcfg.setMetadataSchema("salesforce");
+		dbcfg.setMetadataSchema(schemaName);
 		dbcfg.setMetadataTableNamePattern("%");
-		String excludePattern = "^[_]\\w*";
 		dbcfg.setMetadataTableNameExclude(excludePattern);
+		if (! includePattern.equals(""))
+			dbcfg.setMetadataTableNameInclude(includePattern);
 		return dbcfg;
 	}
 
