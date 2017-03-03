@@ -113,7 +113,7 @@ public class CodeGenerator {
 		appName = getOptionOrDefaultValue(line, APP, "secure-app");
 		dir = getOptionOrDefaultValue(line, DIR, System.getProperty("user.dir"));
 		debug = getOptionOrDefaultValue(line, DEBUG, "false").equals("true");
-		schemaName = getOptionOrDefaultValue(line, DEFAULT_SCHEMA, schemaName);
+		schemaName = getOptionOrDefaultValue(line, SCHEMA, DEFAULT_SCHEMA);
 		excludePattern = getOptionOrDefaultValue(line, EXCLUDE_PATTERN, excludePattern);
 		includePattern = getOptionOrDefaultValue(line, INCLUDE_PATTERN, includePattern);
 		tableNamePattern = getOptionOrDefaultValue(line, TABLENAME_PATTERN, tableNamePattern);
